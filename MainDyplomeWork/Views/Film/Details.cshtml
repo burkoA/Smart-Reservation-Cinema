@@ -1,0 +1,42 @@
+﻿@model MainDyplomeWork.FilmContext.Film
+
+@{
+    ViewData["Title"] = "Details";
+}
+
+	<div class="detailsMovie main-container">
+	<h1>Details</h1>
+			<div class="movie-details">
+				<div>
+				  <img src="/img/filmsImage/film1.jpg" alt="Film Image"  class="film-image">
+				</div>
+				<div class="film-info">
+					<h1>Film Title</h1>
+					<p><strong>Director:</strong> Director Name</p>
+					<p><strong>Actors:</strong> Actor 1, Actor 2, Actor 3</p>
+					<p><strong>Average Rating:</strong> 8.5</p>
+					<p><strong>Duration:</strong> 120 minutes</p>
+					<p><strong>Subtitles:</strong> Language</p>
+					<p><strong>Genres:</strong> Genre 1, Genre 2, Genre 3</p>
+					<p><strong>Release:</strong> Release Date</p>
+				</div>
+			</div>
+
+			<div class="film-description">
+				<h1>Description</h1>
+				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique, turpis at lacinia interdum, metus est facilisis nisi, eu lacinia sem mi ac nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+			</div>
+
+			<div class="available-cinema-list">
+				<h1>Cinemas</h1>
+				<ul>
+					<li>Cinema 1</li>
+					<li>Cinema 2</li>
+					<li>Cinema 3</li>
+				</ul>
+			</div>
+		<div>
+			<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
+			<a asp-action="Index">Back to List</a>
+		</div>
+	</div>

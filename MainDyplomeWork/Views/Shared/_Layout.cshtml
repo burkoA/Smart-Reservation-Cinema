@@ -1,0 +1,104 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Cinema</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrap.min.css" />
+    <link rel="stylesheet" href="~/css/style.css" />
+    <script type="text/javascript" src="/lib/bootstrap/dist/js/bootstrap.js"></script>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+</head>
+<body>
+@*    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
+            <div class="container">
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MainDyplomeWork</a>
+                <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Index">Home</a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-dark" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+    </header>*@
+    <header>
+    <div class="container">
+      <div class="header-left">
+        <h1>Cinema</h1>
+      </div>
+      <div class="header-middle">
+        <nav>
+          <ul>
+            <li><a href="#" id="admin-panel-link">Admin Panel</a></li>
+            <li><a asp-controller="Film" asp-action="Index" class="active">Movies</a></li>
+            <li><a href="#">Theaters</a></li>
+            <li><a href="#">Contact</a></li>
+            <li><a href="/pages/login/login.html">Login</a></li>
+          </ul>
+        </nav>
+      </div>
+      <div class="header-right">
+        <form class="search-form">
+          <input type="text" placeholder="Search...">
+          <button type="submit">Search</button>
+        </form>
+      </div>
+    </div>
+  </header>
+  <main role="main" class="pb-3">
+    @RenderBody()
+  </main>
+
+    <footer class="border-top footer text-muted">
+        <div class="container">
+            &copy; 2023 - MainDyplomeWork - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script>
+$(document).ready(function() {
+  // При натисканні на посилання з id="admin-panel-link"
+  $('#admin-panel-link').click(function(e) {
+    e.preventDefault(); // Перешкоджає переходу за посиланням
+
+    // Перевіряємо, чи вікно вже відображено
+    if ($('.admin-panel-window').length > 0) {
+      $('.admin-panel-window').remove(); // Видаляємо вікно, якщо воно вже є
+    } else {
+      // Створюємо вікно з класом admin-panel-window
+      var adminPanelWindow = $('<div class="admin-panel-window">');
+      
+      // Створюємо список ul
+      var ul = $('<ul>');
+
+      // Додаємо посилання на сторінку Genres
+      var genresLink = $('<li>').append($('<a>').attr('href', '/Genres/Index').text('Genres'));
+      ul.append(genresLink);
+      
+      // Додаємо посилання на сторінку Directors
+      var directorsLink = $('<li>').append($('<a>').attr('href', '/Directors/Index').text('Directors'));
+      ul.append(directorsLink);
+
+      // Додаємо список ul до вікна
+      adminPanelWindow.append(ul);
+      
+      // Вставляємо вікно під елементом з id="admin-panel-link" в body
+      $('#admin-panel-link').after(adminPanelWindow);
+    }
+  });
+});
+    </script>
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

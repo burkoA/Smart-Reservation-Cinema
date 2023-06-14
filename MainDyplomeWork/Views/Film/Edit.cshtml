@@ -1,0 +1,76 @@
+﻿@model MainDyplomeWork.FilmContext.Film
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+
+<hr />
+<div class="logForm container">
+        <form asp-action="Edit">
+            <h2>Edit Movie</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <div class="form-group">
+                <label asp-for="FilmName" class="control-label"></label>
+                <input asp-for="FilmName" class="form-control" />
+                <span asp-validation-for="FilmName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Description" class="control-label"></label>
+                <input asp-for="Description" class="form-control" />
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Time" class="control-label"></label>
+                <input asp-for="Time" class="form-control" />
+                <span asp-validation-for="Time" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Realese" class="control-label"></label>
+                <input asp-for="Realese" class="form-control" />
+                <span asp-validation-for="Realese" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="Image" class="form-control" />
+                <span asp-validation-for="Image" class="text-danger"></span>
+            </div>
+@*            <div class="form-group">
+                <label asp-for="GenreId" class="control-label"></label>
+                <select asp-for="GenreId" class="form-control" asp-items="ViewBag.Genres"></select>
+                <span asp-validation-for="GenreId" class="text-danger"></span>
+            </div>*@
+            <div class="form-group">
+                <label asp-for="Genres" class="control-label"></label>
+                @foreach(MainDyplomeWork.FilmContext.Genre item in ViewBag.Genres)
+               {
+                if(Model.Genres.Any(gf=>gf.Id_Genre==item.Id))
+                {
+                <input type="checkbox" name=genres value="@item.Id" checked>@item.GenreName<br />                    
+                }
+                else
+                {
+                <input type="checkbox" name=genres value="@item.Id">@item.GenreName<br />                    
+                }
+
+               }
+            </div>
+            <div class="form-group">
+                <label asp-for="DirectorId" class="control-label"></label>
+                <select asp-for="DirectorId" class="form-control" asp-items="ViewBag.Directors"></select>
+                <span asp-validation-for="DirectorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

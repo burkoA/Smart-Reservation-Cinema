@@ -1,0 +1,56 @@
+﻿@model IEnumerable<MainDyplomeWork.FilmContext.Director>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="main-container">
+    <div class="row">
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Name_Director)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Birth_Place)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Work_Experience)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Movie_Number)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Name_Director)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Birth_Place)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Work_Experience)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Movie_Number)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id_Director">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id_Director">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id_Director">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>

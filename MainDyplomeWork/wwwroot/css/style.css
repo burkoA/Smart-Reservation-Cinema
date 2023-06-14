@@ -1,0 +1,531 @@
+/*Total body*/
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    margin: 0;
+    padding: 0;
+    display: flex; /*Check*/
+    flex-direction: column; /*Check*/
+    min-height: 100vh; /*Check*/
+}
+
+/*Header*/
+
+header {
+    background-color: #232323;
+    color: #fff;
+    padding: 20px 0;
+    margin: 0 auto;
+    width: 100%;
+}
+
+.container {
+    max-width: 1440px;
+    margin: 0 auto;
+    padding: 0 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main-container {
+    max-width: 1440px; /* Adjust the width as needed */
+    margin: 0 auto;
+    padding: 0 20px;
+    border-radius: 2%;
+}
+
+.header-left {
+    display: flex;
+    align-items: center;
+}
+
+.header-left h1 {
+        margin: 0;
+}
+
+.header-middle {
+    flex-grow: 1;
+    display: flex;
+    justify-content: center;
+}
+
+nav ul {
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+}
+
+nav ul li {
+        display: inline-block;
+        margin-left: 20px;
+}
+
+nav ul li:first-child {
+            margin-left: 0;
+}
+
+nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 22px;
+            line-height: 50px;
+}
+
+nav ul li a:hover {
+                background-color: rgb(146, 97, 5);
+                color: #ecf0f1;
+                border-radius: 10%;
+}
+
+.header-right {
+    display: flex;
+    align-items: center;
+}
+
+.search-form {
+    display: flex;
+    align-items: center;
+}
+
+.search-form input[type="text"] {
+        padding: 8px;
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        width: 100%;
+        max-width: 400px;
+        margin-right: 10px;
+        box-sizing: border-box;
+        height: 30px;
+}
+
+.search-form button[type="submit"] {
+        background-color: #232323;
+        color: #fff;
+        padding: 10px 20px;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        display: inline;
+        font-size: 22px;
+}
+
+.search-form button[type="submit"]:hover {
+            background-color: #f3a60d;
+}
+
+/*Admin Panel*/
+
+.admin-panel-window {
+    position: fixed;
+    top: 0;
+    left: 0;
+    transform: none;
+    padding: 20px;
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+    z-index: 9999;
+    background-color: black;
+}
+
+/*Main form for login*/
+
+main {
+    flex: 1;
+    padding: 50px 0;
+    background-image: url("/img/cinemaBackground.jpg");
+    background-color: #f5f5f5;
+}
+
+.container {
+    max-width: 960px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+form {
+    max-width: 400px;
+    margin: 0 auto;
+}
+
+label {
+    display: block; /*Check*/
+    margin-bottom: 5px;
+}
+
+input[type="email"],
+input[type="password"],
+input[type="text"] {
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    width: 100%;
+    margin-bottom: 20px;
+    box-sizing: border-box; /*Check*/
+}
+
+button[type="submit"] {
+    background-color: #232323;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; /*Check*/
+    display: inline;
+}
+
+button[type="submit"]:hover {
+        background-color: #f3a60d;
+}
+
+a {
+    color: #232323;
+    text-decoration: none; /*Check*/
+}
+
+.leftSight {
+    text-align: right;
+    display: inline;
+}
+
+.regst {
+    display: inline;
+}
+
+.regst a {
+        color: #080fdf;
+}
+
+.regst a:hover {
+            color: #f3a60d;
+}
+
+/*Footer*/
+
+footer {
+    background-color: #232323;
+    color: #fff;
+    padding: 20px 0;
+    text-align: center;
+    margin-top: auto;
+}
+
+footer p {
+        margin: 0;
+}
+
+.active {
+    display: inline-block;
+    background-color: #404848;
+    color: #ecf0f1;
+    border-radius: 20%;
+}
+
+/*Index*/
+
+.movie-info {
+    float: left;
+    width: 100%;
+    border: 2px solid #232323;
+    border-radius: 25px;
+}
+
+.movie-info img {
+        max-width: 100%;
+        height: 300px;
+        object-fit: cover;
+}
+
+.movie-info h2 {
+        font-size: 24px;
+        margin-top: 0;
+}
+
+.movie-info p {
+        font-size: 16px;
+}
+
+.rating {
+    margin-top: 20px;
+    font-size: 20px;
+}
+
+.rating i {
+        color: #f3a60d;
+}
+
+.movie-description {
+    width: 100%;
+    overflow-wrap: break-word;
+}
+
+.genre {
+    display: block;
+    width: 100%;
+    text-align: center;
+    font-size: 1.5em;
+}
+
+.genre ul li {
+        list-style-type: none;
+        text-align: left;
+}
+
+.row {
+    background-color: white;
+    border-radius: 2%;
+    margin-bottom: 40px;
+    padding: 20px 0;
+    display: flex;
+    justify-content: space-between;
+}
+
+.row img {
+        width: 300px; /* Adjust the width as needed */
+        height: 300px; /* Adjust the height as needed */
+        object-fit: cover;
+}
+
+.logForm {
+    background-color: white;
+    border-radius: 2%;
+    margin-bottom: 50px;
+    margin-top: 120px;
+    padding: 100px 0;
+}
+
+.logForm form {
+        margin-top: 100px;
+        margin-bottom: 100px;
+}
+
+.genre-info {
+    display: flex;
+    align-items: center;
+}
+
+.genre-info h2, .genre-info p {
+        margin: 0;
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+}
+
+.actionButton {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.actionButton a {
+    margin-right: 5px;
+    background-color: orange;
+    border-radius: 5px;
+}
+
+.newFilm a {
+    color: white;
+}
+
+.cinema-list {
+    background-color: black;
+    color: white;
+    padding: 10px;
+    margin-bottom: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.cinema-list h2 {
+   font-size: 24px;
+   margin: 0;
+   padding: 0;
+}
+
+.newFilm {
+    text-align: right;
+}
+
+/*Details page*/
+
+.detailsMovie {
+    background-color: white;
+    margin: 0 auto;
+    padding: 20px;
+}
+
+.movie-details {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    font-size: 26px;
+}
+
+.film-image {
+    width: 300px;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.film-info h1 {
+    margin-top: 0;
+    margin-bottom: 10px;
+}
+
+.film-info p {
+    margin: 0;
+}
+
+.film-description {
+    margin-bottom: 20px;
+}
+
+.available-cinema-list {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.available-cinema-list h1 {
+        flex-basis: 100%;
+}
+
+.available-cinema-list ul {
+        display: flex;
+        list-style: none;
+        padding: 0;
+}
+
+.available-cinema-list li {
+        margin-right: 10px;
+}
+
+/*Genre*/
+
+
+/* Small screens */
+@media (max-width: 576px) {
+    /* Adjustments for small screens */
+    .container {
+        padding: 0 10px;
+    }
+
+    .header-left h1 {
+        font-size: 24px;
+    }
+
+    nav ul li a {
+        font-size: 18px;
+        line-height: 30px;
+    }
+
+    .search-form input[type="text"] {
+        max-width: 100%;
+    }
+
+    .search-form button[type="submit"] {
+        font-size: 18px;
+        width: 20%;
+    }
+
+    .movie-info img {
+        width: 100%;
+        height: auto;
+    }
+
+    .movie-info h2 {
+        font-size: 20px;
+    }
+
+    .movie-info p {
+        font-size: 14px;
+    }
+
+    .rating {
+        font-size: 18px;
+    }
+
+    .cinema-list h2 {
+        font-size: 20px;
+    }
+}
+
+@media (min-width: 577px) and (max-width: 991px) {
+    .container {
+        padding: 0 20px;
+    }
+
+    .header-left h1 {
+        font-size: 28px;
+    }
+
+    nav ul li a {
+        font-size: 20px;
+        line-height: 40px;
+    }
+
+    .search-form input[type="text"] {
+        max-width: 100%;
+    }
+
+    .search-form button[type="submit"] {
+        font-size: 20px;
+        width: 60%;
+    }
+
+    .movie-info h2 {
+        font-size: 22px;
+    }
+
+    .movie-info p {
+        font-size: 16px;
+    }
+
+    .rating {
+        font-size: 20px;
+    }
+
+    .cinema-list h2 {
+        font-size: 22px;
+    }
+}
+
+@media (min-width: 992px) {
+    /* Adjustments for large screens */
+    .container {
+        padding: 0 40px;
+    }
+
+    .header-left h1 {
+        font-size: 32px;
+    }
+
+    nav ul li a {
+        font-size: 24px;
+        line-height: 50px;
+    }
+
+    .search-form input[type="text"] {
+        max-width: 400px;
+    }
+
+    .search-form button[type="submit"] {
+        font-size: 22px;
+        width: 40%;
+    }
+
+    .movie-info h2 {
+        font-size: 24px;
+    }
+
+    .movie-info p {
+        font-size: 18px;
+    }
+
+    .rating {
+        font-size: 22px;
+    }
+
+    .cinema-list h2 {
+        font-size: 24px;
+    }
+}
