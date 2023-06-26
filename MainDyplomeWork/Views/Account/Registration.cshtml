@@ -1,0 +1,38 @@
+﻿@model MainDyplomeWork.Models.RegistrationModel;
+@{
+}
+    <div class="logForm container">
+      <form asp-action="Registration" method="post">
+        <h2>Registration Form</h2>
+        <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+        <label asp-for="Email"></label>
+        <input type="email" asp-for="Email">
+        <span asp-validation-for="Email" class="text-danger"></span>
+
+        <label asp-for="Password">Password: *</label>
+        <input type="password" asp-for="Password">
+        <span asp-validation-for="Password" class="text-danger"></span>
+
+        <label asp-for="PasswordRepeat">Repeat password: *</label>
+        <input type="password" asp-for="PasswordRepeat">
+        <span asp-validation-for="PasswordRepeat" class="text-danger"></span>
+
+        <label asp-for="FirstName"></label>
+        <input type="text" asp-for="FirstName">
+        <span asp-validation-for="FirstName" class="text-danger"></span>
+
+        <label asp-for="LastName"></label>
+        <input type="text" asp-for="LastName">
+        <span asp-validation-for="LastName" class="text-danger"></span>
+
+        <label asp-for="City"></label>
+        <input type="text" asp-for="City">
+        <span asp-validation-for="City" class="text-danger"></span>
+
+        <div class="regst">
+            <button type="submit">Register</button>
+            <p class="leftSight">Already have an account? <a asp-action="Login">Login</a></p> 
+        </div>
+
+      </form>
+    </div>

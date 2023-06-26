@@ -33,30 +33,46 @@
             </div>
         </nav>
     </header>*@
-    <header>
-    <div class="container">
-      <div class="header-left">
-        <h1>Cinema</h1>
-      </div>
-      <div class="header-middle">
-        <nav>
-          <ul>
-            <li><a href="#" id="admin-panel-link">Admin Panel</a></li>
-            <li><a asp-controller="Film" asp-action="Index" class="active">Movies</a></li>
-            <li><a href="#">Theaters</a></li>
-            <li><a href="#">Contact</a></li>
-            <li><a href="/pages/login/login.html">Login</a></li>
-          </ul>
-        </nav>
-      </div>
-      <div class="header-right">
-        <form class="search-form">
-          <input type="text" placeholder="Search...">
-          <button type="submit">Search</button>
-        </form>
-      </div>
+<header>
+  <div class="container">
+    <div class="header-left">
+      <h1>Cinema</h1>
     </div>
-  </header>
+    <div class="header-middle">
+      <nav>
+        <ul>
+          <li><a asp-controller="Film" asp-action="Index" class="active">Movies</a></li>
+          <li><a href="#">Theaters</a></li>
+          <li><a href="#">Contact</a></li>
+        @if (Context.User.Identity.IsAuthenticated)
+        {
+            <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
+        }
+        else{
+        <li><a asp-controller="Account" asp-action="Login">Login</a></li>
+        }
+        </ul>
+      </nav>
+    </div>
+    <div class="admin-panel-block">
+        <ul>
+            <li class="dropdown">
+            <a href="#" class="dropdown-toggle">Admin Panel</a>
+            <ul class="dropdown-menu">
+              <li><a asp-controller="Genres" asp-action="Index">Genres</a></li>
+              <li><a asp-controller="Directors" asp-action="Index">Directors</a></li>
+            </ul>
+          </li>
+        </ul>
+    </div>
+    <div class="header-right">
+      <form class="search-form">
+        <input type="text" placeholder="Search...">
+        <button type="submit">Search</button>
+      </form>
+    </div>
+  </div>
+</header>
   <main role="main" class="pb-3">
     @RenderBody()
   </main>
@@ -67,34 +83,25 @@
         </div>
     </footer>
     <script>
-$(document).ready(function() {
-  // При натисканні на посилання з id="admin-panel-link"
-  $('#admin-panel-link').click(function(e) {
-    e.preventDefault(); // Перешкоджає переходу за посиланням
+$document.addEventListener('DOMContentLoaded', function() {
+  var dropdownToggle = document.querySelectorAll('.dropdown-toggle');
+  var dropdownMenus = document.querySelectorAll('.dropdown-menu');
 
-    // Перевіряємо, чи вікно вже відображено
-    if ($('.admin-panel-window').length > 0) {
-      $('.admin-panel-window').remove(); // Видаляємо вікно, якщо воно вже є
-    } else {
-      // Створюємо вікно з класом admin-panel-window
-      var adminPanelWindow = $('<div class="admin-panel-window">');
-      
-      // Створюємо список ul
-      var ul = $('<ul>');
+  dropdownToggle.forEach(function(toggle) {
+    toggle.addEventListener('click', function(e) {
+      e.preventDefault();
+      var menu = this.nextElementSibling;
+      toggle.classList.toggle('active');
+      menu.classList.toggle('show');
+    });
+  });
 
-      // Додаємо посилання на сторінку Genres
-      var genresLink = $('<li>').append($('<a>').attr('href', '/Genres/Index').text('Genres'));
-      ul.append(genresLink);
-      
-      // Додаємо посилання на сторінку Directors
-      var directorsLink = $('<li>').append($('<a>').attr('href', '/Directors/Index').text('Directors'));
-      ul.append(directorsLink);
-
-      // Додаємо список ul до вікна
-      adminPanelWindow.append(ul);
-      
-      // Вставляємо вікно під елементом з id="admin-panel-link" в body
-      $('#admin-panel-link').after(adminPanelWindow);
+  document.addEventListener('click', function(e) {
+    if (!e.target.matches('.dropdown-toggle') && !e.target.matches('.dropdown-toggle *')) {
+      dropdownMenus.forEach(function(menu) {
+        menu.classList.remove('show');
+        menu.previousElementSibling.classList.remove('active');
+      });
     }
   });
 });

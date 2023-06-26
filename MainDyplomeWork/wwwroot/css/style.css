@@ -47,34 +47,56 @@ header {
     flex-grow: 1;
     display: flex;
     justify-content: center;
+    flex-wrap: nowrap;
+    overflow: auto;
 }
 
 nav ul {
     margin: 0;
     padding: 0;
     list-style-type: none;
+    white-space: nowrap;
 }
 
 nav ul li {
         display: inline-block;
         margin-left: 20px;
+        white-space: nowrap;
 }
 
 nav ul li:first-child {
-            margin-left: 0;
+margin-left: 0;
 }
 
 nav ul li a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 22px;
-            line-height: 50px;
+ color: #fff;
+ text-decoration: none;
+ font-size: 24px;
+ line-height: 50px;
 }
 
 nav ul li a:hover {
-                background-color: rgb(146, 97, 5);
-                color: #ecf0f1;
-                border-radius: 10%;
+  background-color: rgb(146, 97, 5);
+  color: #ecf0f1;
+  border-radius: 10%;
+}
+
+.admin-panel-block {
+    display: flex;
+    margin-right: 20px;
+}
+
+.admin-panel-block ul li a {
+    color: #fff;
+    text-decoration: none;
+    font-size: 22px;
+    line-height: 50px;
+}
+
+.admin-panel-block ul li a:hover{
+  background-color: rgb(146, 97, 5);
+  color: #ecf0f1;
+  border-radius: 10%;
 }
 
 .header-right {
@@ -115,15 +137,47 @@ nav ul li a:hover {
 
 /*Admin Panel*/
 
-.admin-panel-window {
-    position: fixed;
-    top: 0;
-    left: 0;
-    transform: none;
-    padding: 20px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+.dropdown {
+    position: relative;
+    display: inline-block;
+}
+
+.dropdown-menu {
+    display: none;
+    position: absolute;
+    background-color: #232323;
+    padding: 10px;
     z-index: 9999;
-    background-color: black;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in;
+    border-radius: 10%;
+    border-color: white;
+}
+
+.dropdown:hover .dropdown-menu {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+    margin-top: 0px;
+}
+
+.dropdown-menu li {
+    margin-bottom: 10px;
+    margin: 10px 0;
+}
+
+.dropdown-menu li:first-child {
+    margin-top: 10px; 
+}
+
+.dropdown-menu li {
+    margin-bottom: 10px; 
+}
+
+.dropdown-menu a {
+    color: white;
+    text-decoration: none;
 }
 
 /*Main form for login*/
@@ -135,11 +189,11 @@ main {
     background-color: #f5f5f5;
 }
 
-.container {
+/*.container {
     max-width: 960px;
     margin: 0 auto;
     padding: 0 20px;
-}
+}*/
 
 form {
     max-width: 400px;
@@ -249,7 +303,7 @@ footer p {
 }
 
 .rating i {
-        color: #f3a60d;
+    color: #f3a60d;
 }
 
 .movie-description {
@@ -265,8 +319,8 @@ footer p {
 }
 
 .genre ul li {
-        list-style-type: none;
-        text-align: left;
+    list-style-type: none;
+    text-align: left;
 }
 
 .row {
@@ -344,6 +398,51 @@ footer p {
     text-align: right;
 }
 
+/*Pages change*/
+
+.pagination-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px;
+}
+
+.pagination-wrapper {
+    display: inline-block;
+}
+
+.pagination {
+    display: inline-flex;
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+}
+
+.page-item {
+    margin-right: 5px;
+}
+
+.page-link {
+    display: inline-block;
+    padding: 5px 10px;
+    background-color: #232323;
+    color: #fff;
+    text-decoration: none;
+    border-radius: 5px;
+}
+
+.page-link:hover {
+        background-color: #f3a60d;
+}
+
+.pagesText {
+    font-size: 18px;
+    font-weight: bold;
+    background-color: #232323;
+    color: #fff;
+    margin-right: 5px;
+    border-radius: 10%;
+}
+
 /*Details page*/
 
 .detailsMovie {
@@ -403,9 +502,9 @@ footer p {
 
 
 /* Small screens */
-@media (max-width: 576px) {
+/*@media (max-width: 576px) {*/
     /* Adjustments for small screens */
-    .container {
+    /*.container {
         padding: 0 10px;
     }
 
@@ -489,9 +588,9 @@ footer p {
     }
 }
 
-@media (min-width: 992px) {
+@media (min-width: 992px) {*/
     /* Adjustments for large screens */
-    .container {
+    /*.container {
         padding: 0 40px;
     }
 
@@ -499,9 +598,14 @@ footer p {
         font-size: 32px;
     }
 
+    .header-middle {
+        flex-wrap: nowrap;
+    }
+
     nav ul li a {
-        font-size: 24px;
+        font-size: 14px;
         line-height: 50px;
+        font-weight: 620;
     }
 
     .search-form input[type="text"] {
@@ -528,4 +632,4 @@ footer p {
     .cinema-list h2 {
         font-size: 24px;
     }
-}
+}*/

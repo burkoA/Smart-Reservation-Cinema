@@ -1,4 +1,5 @@
 using MainDyplomeWork.FilmContext;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.HttpsPolicy;
@@ -26,6 +27,13 @@ namespace MainDyplomeWork
         {
             services.AddControllersWithViews();
             services.AddDbContext<FilmDbContext>();
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme).AddCookie(
+                CookieAuthenticationDefaults.AuthenticationScheme,config =>
+                {
+                    config.LoginPath = "/Account/Login";
+                    config.AccessDeniedPath = "/Account/Denied";
+                });
+            services.AddAuthentication();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -46,6 +54,7 @@ namespace MainDyplomeWork
 
             app.UseRouting();
 
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

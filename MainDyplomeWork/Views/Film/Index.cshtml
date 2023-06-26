@@ -67,11 +67,19 @@
               }
 
             </div>
-            <div>Pages&nbsp:&nbsp
-                @for (int i = 0;i < ViewBag.pageCnt; i++)
-                {
-                    <a href="/Film/Index/@ViewBag.curGenge?curPage=@i">@(i+1)</a>
-                }
             </div>
-          </div>
+            <div class="pagination-container">
+                <div class="pagination-wrapper">
+                    <div class="pagesText">Pages&nbsp;:&nbsp;
+                        <ul class="pagination">
+                            @for (int i = 0; i < ViewBag.pageCnt; i++)
+                            {
+                                <li class="page-item">
+                                    <a class="page-link" href="/Film/Index/@ViewBag.curGenge?curPage=@i">@(i+1)</a>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+            </div>
         </div>

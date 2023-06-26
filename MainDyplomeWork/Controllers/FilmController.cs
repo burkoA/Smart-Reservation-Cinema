@@ -1,4 +1,5 @@
 ﻿using MainDyplomeWork.FilmContext;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
@@ -96,6 +97,7 @@ namespace MainDyplomeWork.Controllers
         }
 
         // GET: FilmController/Edit/5
+        [Authorize(Roles ="admin,manager")]
         public ActionResult Edit(int id)
         {
             GenerateList();
@@ -106,6 +108,7 @@ namespace MainDyplomeWork.Controllers
         // POST: FilmController/Edit/5
         [HttpPost]
         [ValidateAntiForgeryToken]
+        [Authorize(Roles = "admin,manager")]
         public ActionResult Edit(int id, Film film, int[] genres)
         {
             try
