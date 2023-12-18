@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel.DataAnnotations;
 
-namespace MainDyplomeWork.Models
+namespace SmartReservationCinema.Models
 {
     public class LoginModel
     {

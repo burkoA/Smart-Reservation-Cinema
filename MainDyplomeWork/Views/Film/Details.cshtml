@@ -1,42 +1,94 @@
-﻿@model MainDyplomeWork.FilmContext.Film
+﻿@model SmartReservationCinema.FilmContext.Film
 
 @{
     ViewData["Title"] = "Details";
 }
 
 	<div class="detailsMovie main-container">
-	<h1>Details</h1>
 			<div class="movie-details">
-				<div>
-				  <img src="/img/filmsImage/film1.jpg" alt="Film Image"  class="film-image">
-				</div>
+        <div>
+				  <img src="/img/filmsImage/@Model.Image" alt="@Model.FilmName"  class="film-image">
+        </div>
 				<div class="film-info">
-					<h1>Film Title</h1>
-					<p><strong>Director:</strong> Director Name</p>
-					<p><strong>Actors:</strong> Actor 1, Actor 2, Actor 3</p>
-					<p><strong>Average Rating:</strong> 8.5</p>
-					<p><strong>Duration:</strong> 120 minutes</p>
-					<p><strong>Subtitles:</strong> Language</p>
-					<p><strong>Genres:</strong> Genre 1, Genre 2, Genre 3</p>
-					<p><strong>Release:</strong> Release Date</p>
+					<h1>@Model.FilmName</h1>
+					<p><strong>Director:</strong> @Model.Director.Name_Director</p>
+					<p><strong>Actors:</strong>
+                        @foreach(SmartReservationCinema.FilmContext.Film_Actor film_actor in Model.Actors) {
+                          <span>@film_actor.actor.Actor_Name, </span>  
+                        }
+                        </p>
+					<p><strong>Average Rating:</strong> @ViewBag.Rate 
+                        <iframe src="/FilmMarks/Create?filmId=@Model.Id" width="100%" height="100" style="border:none;"></iframe>
+                    </p>
+					<p><strong>Duration:</strong> @Model.Time</p>
+					<p><strong>Subtitles:</strong> 
+                        @foreach(SmartReservationCinema.FilmContext.Subtitle film_subtitle in Model.Subtitles)
+                        {
+                            <span>@film_subtitle.Language.LanguageName, </span>
+                        }    
+                    </p>
+					<p><strong>Genres:</strong> 
+                        @foreach(SmartReservationCinema.FilmContext.Genre_Film genre_film in Model.Genres) {
+                          <span>@genre_film.genre.GenreName, </span>  
+                        }
+                    </p>
+					<p><strong>Release:</strong> @Model.Realese.ToShortDateString()</p>
 				</div>
 			</div>
 
 			<div class="film-description">
 				<h1>Description</h1>
-				<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam tristique, turpis at lacinia interdum, metus est facilisis nisi, eu lacinia sem mi ac nisi. Pellentesque habitant morbi tristique senectus et netus et malesuada fames ac turpis egestas.</p>
+				<p>@Model.Description</p>
 			</div>
 
 			<div class="available-cinema-list">
-				<h1>Cinemas</h1>
-				<ul>
-					<li>Cinema 1</li>
-					<li>Cinema 2</li>
-					<li>Cinema 3</li>
-				</ul>
+                <div class="cinema-avaible-action">
+				  <h1>Cinemas</h1>
+                <div class="form-filter-action">
+                    <label style="font-size: 20px;">Choose town</label><br />
+              <form class="townFormFilter">
+                <select style="height: 35px" name="TownIdFilter" class="form-control">
+                        @foreach(SmartReservationCinema.FilmContext.Town town in ViewBag.Towns)
+                        {
+                            if (town.Id == ViewBag.SelectedTownId)
+                            {
+                                <option value="@town.Id" selected>@town.TownName</option>
+                            }
+                            else
+                            {
+                                <option value="@town.Id">@town.TownName</option>
+                            }
+                        }
+                    </select>
+
+                <label style="font-size: 20px;">Pick date</label><br />
+                <input style="height: 30px" type="date" name="dateFilter" value="@ViewBag.dateFilter.ToString("yyyy-MM-dd")">
+                <button style="height: 35px" type="submit">Submit</button>
+              </form>
+                </div>
+                </div>                
+                @foreach(SmartReservationCinema.Models.CinemaDistanceModel cinema in ViewBag.Cinemas)
+                {
+                    <div class="cinema-available-list">    
+                        <a asp-controller="Cinema" asp-action="Details" asp-route-id="@cinema.Id"><h4>@cinema.CinemaName</h4>
+                        <img src="/img/cinemaImage/@cinema.Image">
+                        </a><br />
+                        @cinema.Distance
+                    </div>
+                }
 			</div>
-		<div>
-			<a asp-action="Edit" asp-route-id="@Model.Id">Edit</a> |
-			<a asp-action="Index">Back to List</a>
+
+            <div class="user-comment">
+                @if (ViewBag.UserName != null){
+                    @await Html.PartialAsync("CreateComment", (SmartReservationCinema.Models.CommentModel)@ViewBag.CommentModel);
+                }                
+            </div><br />
+
+            <div class="comment-list">
+                <h1>All comment </h1> <br />
+                <section>
+                    @await Html.PartialAsync("AllComments", @Model.Comments)
+                </section>
+            </div>
+
 		</div>
-	</div>

@@ -1,4 +1,4 @@
-﻿@model MainDyplomeWork.FilmContext.Film
+﻿@model SmartReservationCinema.Models.FilmModel
 
 @{
     ViewData["Title"] = "Create";
@@ -9,7 +9,7 @@
 
 <hr />
 <div class="logForm container">
-        <form asp-action="Create">
+        <form asp-action="Create" enctype="multipart/form-data">
             <h2>Create Movie</h2>
             <div asp-validation-summary="ModelOnly" class="text-danger"></div>
             <div class="form-group">
@@ -33,13 +33,18 @@
                 <span asp-validation-for="Realese" class="text-danger"></span>
             </div>
             <div class="form-group">
+                <label asp-for="Rating" class="control-label"></label>
+                <input asp-for="Rating" class="form-control" />
+                <span asp-validation-for="Rating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
                 <label asp-for="Image" class="control-label"></label>
-                <input type="file" asp-for="Image" />
-                <span asp-validation-for="Image" class="text-danger"></span>
+                <input type="file" asp-for="uploadFile" />
+                <span asp-validation-for="uploadFile" class="text-danger"></span>
             </div>
             <div class="form-group">
                 <label asp-for="Genres" class="control-label"></label>
-                @foreach(MainDyplomeWork.FilmContext.Genre item in ViewBag.Genres)
+                @foreach(SmartReservationCinema.FilmContext.Genre item in ViewBag.Genres)
                {
                 if(Model.Genres.Any(gf=>gf.Id_Genre==item?.Id))
                 {
@@ -55,6 +60,20 @@
             <div class="form-group">
                 <label asp-for="DirectorId" class="control-label"></label>
                 <select asp-for="DirectorId" class ="form-control" asp-items="ViewBag.Directors"></select>
+            </div>
+            <div class="form-group">
+                <label asp-for="Actors" class="control-label"></label>
+                @foreach(SmartReservationCinema.FilmContext.Actor item in ViewBag.Actors)
+                {
+                    if(Model.Actors.Any(fa => fa.Id_Actor == item?.Id_Actor))
+                    {
+                    <input type="checkbox" name=actors value="@item.Id_Actor" checked>@item.Actor_Name<br/>
+                    }
+                    else
+                    {
+                    <input type="checkbox" name=actors value="@item.Id_Actor">@item.Actor_Name<br/>
+                    }
+                 }
             </div>
             <div class="form-group">
                 <input type="submit" value="Create" class="btn btn-primary" />

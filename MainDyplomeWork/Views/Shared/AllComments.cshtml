@@ -1,0 +1,16 @@
+﻿@model IEnumerable<SmartReservationCinema.FilmContext.Comment>
+@{
+}
+
+@foreach(var comment in Model){
+    <div style="border-bottom: 2px solid #040202; margin-bottom: 5px;">
+        <h3>@comment.User.FirstName</h3>
+        <p>@comment.Text<p>
+        @if (Context.User.IsInRole("admin") || Context.User.IsInRole("manager"))
+        {
+            <form asp-controller="Comment" asp-action="Delete" asp-route-id="@comment.Id"  style="margin: 0" method="post">
+                <button style="width: 70px; padding-left:10px" type="submit" onclick="if(!confirm('You are sure?')) event.preventDefault();">Delete</button>
+            </form>
+        }
+    </div>
+}

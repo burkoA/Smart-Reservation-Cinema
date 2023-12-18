@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MainDyplomeWork.FilmContext
+namespace SmartReservationCinema.FilmContext
 {
     public class Director
     {
@@ -16,6 +16,6 @@ namespace MainDyplomeWork.FilmContext
         [Required]
         public int Movie_Number { get; set; }
 
-        public List<Film> films { get; set; }
+        public List<Film> Films { get; set; }
     }
 }

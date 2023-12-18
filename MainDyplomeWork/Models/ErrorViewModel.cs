@@ -1,6 +1,6 @@
 using System;
 
-namespace MainDyplomeWork.Models
+namespace SmartReservationCinema.Models
 {
     public class ErrorViewModel
     {

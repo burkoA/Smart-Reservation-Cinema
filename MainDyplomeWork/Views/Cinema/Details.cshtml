@@ -1,0 +1,83 @@
+﻿@model SmartReservationCinema.FilmContext.Cinema
+
+@{
+}
+
+    <div class="detailsMovie main-container">
+        <div class="cinema-details">
+          <img class="cinema-image" src="/img/cinemaImage/@Model.Image" alt="Cinema Image">
+          <div class="cinema-info">
+            <h1>@Model.CinemaName</h1>
+            <p>Localisation: @Model.Localisation</p>
+            <p>Town: @Model.Town.TownName</p>
+          </div>
+        </div>
+        <div class="cinema-description">
+          <h2>About the Cinema</h2>
+          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam vehicula, nisl eu facilisis convallis, arcu urna venenatis justo, ut gravida libero nisi id lectus.</p>
+        </div>
+        <div class="cinema-timetable">
+          <div class="sessionLine">
+              <div class="session-title">
+                <h1>Active Session</h1>
+                @if (Context.User.IsInRole("admin") || Context.User.IsInRole("manager"))
+                {
+                    <div>
+                        <a class="create-session" asp-controller="Session" asp-action="Create" asp-route-id="@Model.Id" style="color: black;">Create new session</a>
+                    </div>
+                }
+              </div>
+            <form method="get" class="filter-form">
+            <label style="font-size: 20px;height: 25px">Choose date</label>
+            <input type="date" name="filterDate" value="@ViewBag.filterDate.ToString("yyyy-MM-dd")">
+            <button style="height: 38px" type="submit">Submit</button>
+            </form>
+          </div>
+          <table class="styled-table">
+            <tr>
+              <th>Time</th>
+              <th>Duration</th>
+              <th>Picture</th>
+              <th>Movie Name</th>
+              <th>Language</th>
+              <th>Subtitle</th>
+              <th>Price</th>
+              <th>Start Date</th>
+              <th>End Date</th>
+              <th>Action</th>
+            </tr>
+            @foreach(var item in ViewBag.Sessions) {
+            <tr>
+              <td>@item.StartTime.ToShortTimeString()</td>
+              <td>@item.film.Time min</td>
+              <td><img src="/img/filmsImage/@item.film.Image" class="img-session"></td>
+              <td>@item.film.FilmName</td>
+              <td>@item.Language.LanguageName</td>
+              <td>Polish</td>
+              <td>45 zł</td>
+              <td>@item.StartDate.ToShortDateString()</td>
+              <td>@item.EndDate.ToShortDateString()</td>
+              <td>
+                @if (Context.User.IsInRole("admin") || Context.User.IsInRole("manager"))
+                {
+                        
+                            <ul>
+                            <li><a asp-controller="Session" asp-action="Edit" asp-route-id="@item.Id">Edit</a></li>
+                            <li><a asp-controller="Session" asp-action="Delete" asp-route-id="@item.Id">Delete</a></li>
+                        </ul>
+                    
+                }
+                <form asp-antiforgery="true" asp-controller="Calendar" asp-action="EventWarning">
+                    <input type="hidden" name="CinemaName" value="@Model.CinemaName" />
+                    <input type="hidden" name="FilmName" value="@item.film.FilmName" />
+                    <input type="hidden" name="StartDate" value="@ViewBag.filterDate.ToString("yyyy-MM-dd")" />
+                    <input type="hidden" name="StartTime" value="@item.StartTime.ToShortTimeString()" />
+                    <input type="hidden" name="DurationFilm" value="@item.film.Time">
+                    <button>Create Event</button>
+                </form>
+              </td>
+            </tr>
+            }
+          </table>
+        </div>
+    </div>

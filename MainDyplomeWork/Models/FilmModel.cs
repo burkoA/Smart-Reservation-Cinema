@@ -1,4 +1,4 @@
-﻿using MainDyplomeWork.FilmContext;
+﻿using SmartReservationCinema.FilmContext;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
 using System;
@@ -6,11 +6,28 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.IO;
 
-namespace MainDyplomeWork.Models
+namespace SmartReservationCinema.Models
 {
     public class FilmModel : Film, IValidatableObject
     {
         public IFormFile uploadFile { get; set; }
+        public string NewImage { get; set; } = "";
+
+        public FilmModel() { }
+        public FilmModel(Film film)
+        {
+            Description = film.Description;
+            FilmName = film.FilmName;
+            Time = film.Time;
+            Image = film.Image;
+            Realese = film.Realese;
+            Genres = film.Genres;
+            DirectorId = film.DirectorId;
+            Director = film.Director;
+            Actors = film.Actors;
+            Rating = film.Rating;
+        }
+
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             IWebHostEnvironment env=(IWebHostEnvironment)validationContext.GetService(typeof(IWebHostEnvironment));
@@ -33,8 +50,9 @@ namespace MainDyplomeWork.Models
                     string fileName = getName(imgFolder, extension);
                     using (FileStream fileStream = new FileStream(imgFolder+fileName, FileMode.Create)) {
                         uploadFile.CopyTo(fileStream);
-                        base.Image = fileName;
-                    }                    
+                        NewImage = fileName;
+                    }     
+                    
                 }
             }
             return errorList;

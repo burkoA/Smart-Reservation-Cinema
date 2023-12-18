@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MainDyplomeWork.FilmContext;
+using SmartReservationCinema.FilmContext;
 
-namespace MainDyplomeWork.Controllers
+namespace SmartReservationCinema.Controllers
 {
     public class DirectorsController : Controller
     {
         private readonly FilmDbContext _context;
+        private string[] wordsToSearch = null;
 
         public DirectorsController(FilmDbContext context)
         {
@@ -19,9 +20,30 @@ namespace MainDyplomeWork.Controllers
         }
 
         // GET: Directors
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] String search = "")
         {
-            return View(await _context.Director.ToListAsync());
+            var items = await _context.Director.ToListAsync();
+            if (search != "")
+            {
+                wordsToSearch = SplitSearch(search);
+                items = items.Where(searchCondition).ToList();
+            }
+            return View(items);
+        }
+
+        public bool searchCondition(Director director)
+        {
+            foreach (string word in wordsToSearch)
+            {
+                if (director.Name_Director.ToLower().Contains(word))
+                    return true;
+            }
+            return false;
+        }
+
+        public String[] SplitSearch(String search)
+        {
+            return search.ToLower().Split(new char[] { ' ', ',', '.', '-', ':', ';', '\'', '"', '!', '?' }, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
         }
 
         // GET: Directors/Details/5

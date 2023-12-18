@@ -1,0 +1,16 @@
+﻿@model SmartReservationCinema.Models.PasswordRestore
+@{
+}
+
+		<div class="logForm container">
+			<form asp-action="CheckRestoreCode" method="post">
+        <h2>Write code for restore password</h2>
+				<label asp-for="RestoreCode"></label>
+				<input type="number" asp-for="RestoreCode">
+		<p>Check your email for code. If not see in main email box. Check spam!</p>
+        <div class="regst">
+			<button type="submit">Restore</button>
+          <p class="leftSight">Don't have an account? <a asp-action="Registration">Register now</a></p>
+        </div>
+			</form>
+		</div>

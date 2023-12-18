@@ -7,7 +7,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 
-namespace MainDyplomeWork
+namespace SmartReservationCinema
 {
     public class Program
     {

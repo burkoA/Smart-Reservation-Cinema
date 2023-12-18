@@ -1,4 +1,4 @@
-/*Total body*/
+﻿/*Total body*/
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
@@ -180,6 +180,25 @@ nav ul li a:hover {
     text-decoration: none;
 }
 
+.dropdown-menu-profile {
+    display: none;
+    position: fixed;
+    background-color: #232323;
+    padding: 10px;
+    z-index: 9999;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.3s ease-in;
+    border-radius: 10%;
+    border-color: white;
+}
+
+.dropdown:hover .dropdown-menu-profile {
+    display: block;
+    opacity: 1;
+    pointer-events: auto;
+}
+
 /*Main form for login*/
 
 main {
@@ -216,6 +235,16 @@ input[type="text"] {
     box-sizing: border-box; /*Check*/
 }
 
+button {
+    background-color: #232323;
+    color: #fff;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer; /*Check*/
+    display: inline;
+}
+
 button[type="submit"] {
     background-color: #232323;
     color: #fff;
@@ -227,6 +256,10 @@ button[type="submit"] {
 }
 
 button[type="submit"]:hover {
+        background-color: #f3a60d;
+}
+
+button:hover {
         background-color: #f3a60d;
 }
 
@@ -333,7 +366,7 @@ footer p {
 }
 
 .row img {
-        width: 300px; /* Adjust the width as needed */
+        width: 100%; /* Adjust the width as needed */
         height: 300px; /* Adjust the height as needed */
         object-fit: cover;
 }
@@ -458,9 +491,14 @@ footer p {
     font-size: 26px;
 }
 
+.film-intro {
+    display: flex;
+    align-items: flex-start;
+}
+
 .film-image {
-    width: 300px;
-    height: 300px;
+    max-width: 100%;
+    height: 400px;
     object-fit: cover;
     border-radius: 10px;
     margin-right: 20px;
@@ -484,22 +522,272 @@ footer p {
     flex-wrap: wrap;
 }
 
-.available-cinema-list h1 {
-        flex-basis: 100%;
+.cinema-avaible-action {
+    display: flex;
+    flex-basis: 100%;
+    justify-content: space-between;
 }
 
-.available-cinema-list ul {
-        display: flex;
-        list-style: none;
-        padding: 0;
+.form-filter-action {
+    display: flex;
 }
 
-.available-cinema-list li {
-        margin-right: 10px;
+.form-filter-action form {
+        margin-left: 10px;
 }
 
-/*Genre*/
+.cinema-available-list {
+    margin-left: 10px;
+}
 
+.cinema-available-list img {
+    width: 200px;
+    height: 200px;
+}
+
+.townFormFilter{
+    display: flex;
+    max-height: 50px;
+}
+
+.townFormFilter label{
+    flex-basis: 100%;
+}
+
+.townFormFilter select,button{
+    flex-direction: row;
+    flex-shrink: 1;
+}
+
+.user-comment {
+    display: flex;
+    flex-wrap: wrap;
+}
+
+.user-comment h1 {
+    flex-basis: 100%;
+    width: 100%;
+}
+
+.comment-form {
+    font-size: 20px;
+    margin: 0;
+}
+
+.comment-form textarea {
+    border-radius: 10px;
+}
+
+.rate {
+    float: left;
+    height: 46px;
+    padding: 0 10px;
+}
+
+.rate:not(:checked) > input {
+        position: absolute;
+        top: -9999px;
+}
+
+.rate:not(:checked) > label {
+        float: right;
+        width: 1em;
+        overflow: hidden;
+        white-space: nowrap;
+        cursor: pointer;
+        font-size: 30px;
+        color: #ccc;
+}
+
+.rate:not(:checked) > label:before {
+     content: '★';
+     background: no-repeat;
+}
+
+    .rate > input:checked ~ label {
+        color: #ffc700;
+    }
+
+    .rate:not(:checked) > label:hover,
+    .rate:not(:checked) > label:hover ~ label {
+        color: #deb217;
+    }
+
+    .rate > input:checked + label:hover,
+    .rate > input:checked + label:hover ~ label,
+    .rate > input:checked ~ label:hover,
+    .rate > input:checked ~ label:hover ~ label,
+    .rate > label:hover ~ input:checked ~ label {
+        color: #c59b08;
+    }
+
+/*Cinema details*/
+.cinema-info {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+}
+
+.cinema-details {
+    display: flex;
+    width: 100%;
+    font-size: 26px;
+}
+
+.cinema-image {
+    max-width: 100%;
+    height: 400px;
+    object-fit: cover;
+    border-radius: 10px;
+    margin-right: 20px;
+}
+
+.cinema-info h1 {
+    font-size: 56px;
+}
+
+.cinema-info p {
+    font-size: 36px;
+}
+
+.cinema-info h1,
+.cinema-info p {
+    margin: 0;
+}
+
+.cinema-description {
+    margin-bottom: 20px;
+}
+
+.cinema-description h2 {
+        font-size: 46px;
+}
+
+.cinema-description p {
+        font-size: 26px;
+}
+
+/*User Profile*/
+
+.user-profile {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    max-width: 800px;
+    margin: 0 auto;
+    display: flex;
+}
+
+.purchase-history {
+    background-color: #f5f5f5;
+    border-radius: 10px;
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    padding-right: 50px;
+    border: 2px solid #232323;
+    height: 350px;
+}
+
+.purchase-history a {
+        font-weight: bold;
+        text-decoration: none;
+        color: #232323;
+        margin-top: 35px;
+}
+
+.purchase-history a:hover {
+            color: #f3a60d;
+}
+
+.user-details {
+    padding: 10px 0;
+    padding-left: 20px;
+    width: calc(100% - 200px); /* Відняли ширину блоку purchase-history */
+}
+
+.user-details form h1 {
+        font-size: 28px;
+}
+
+.user-details form table {
+        width: 100%;
+        border-collapse: collapse;
+}
+
+.user-details form table th, table td {
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
+            font-size: 16px; /* Збільшуємо розмір тексту */
+}
+
+.user-details form table th {
+            text-align: left;
+            font-weight: bold;
+}
+
+/*Session*/
+
+.styled-table {
+    border-collapse: collapse;
+    margin: 25px 0;
+    font-size: 0.9em;
+    font-family: sans-serif;
+    width: 100%; /* Змінено ширину на 100% */
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.15);
+}
+
+.styled-table thead tr {
+        background-color: #474747;
+        color: #ffffff;
+        text-align: left;
+}
+
+.styled-table th,
+.styled-table td {
+        padding: 12px 15px;
+}
+
+.styled-table tbody tr {
+        border-bottom: 1px solid #dddddd;
+}
+
+.styled-table tbody tr:nth-of-type(even) {
+            background-color: #f3f3f3;
+}
+
+.styled-table tbody tr:last-of-type {
+            border-bottom: 2px solid;
+}
+
+.img-session {
+    width: 200px;
+    height: 150px;
+}
+
+.sessionLine {
+    display: flex;
+}
+
+.sessionLine form {
+        margin-left: 60%;
+}
+
+.session-title {
+    flex-wrap: nowrap;
+}
+
+.create-session {
+    justify-content: flex-start;
+}
+
+.session-action {
+    list-style: none;
+}
+
+.filter-form button {
+    margin-top: 5px;
+}
 
 /* Small screens */
 /*@media (max-width: 576px) {*/

@@ -1,0 +1,11 @@
+﻿@model SmartReservationCinema.Models.CommentModel
+@{
+}
+                <h1>Comment for movie</h1>
+                <form class="comment-form" style="margin: 0" method="post">
+                    <label>Write your comment @ViewBag.UserName</label><br />
+                    <input type="hidden" asp-for="IdFilm" />
+                    <textarea asp-for="Text" cols="100" placeholder="Place your comment"></textarea>
+                    <span asp-validation-for="Text" class="text-danger"></span>
+                    <button type="submit">Send comment</button>
+                </form>

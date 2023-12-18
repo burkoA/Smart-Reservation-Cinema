@@ -1,4 +1,4 @@
-﻿@model MainDyplomeWork.Models.RegistrationModel;
+﻿@model SmartReservationCinema.Models.RegistrationModel;
 @{
 }
     <div class="logForm container">
@@ -28,6 +28,10 @@
         <label asp-for="City"></label>
         <input type="text" asp-for="City">
         <span asp-validation-for="City" class="text-danger"></span>
+
+        <label asp-for="Address"></label>
+        <input type="text" asp-for="City">
+        <span asp-validation-for="Address" class="text-danger"></span>
 
         <div class="regst">
             <button type="submit">Register</button>

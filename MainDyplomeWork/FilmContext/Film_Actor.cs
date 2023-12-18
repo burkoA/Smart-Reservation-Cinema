@@ -1,7 +1,7 @@
 ﻿using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MainDyplomeWork.FilmContext
+namespace SmartReservationCinema.FilmContext
 {
     public class Film_Actor
     {

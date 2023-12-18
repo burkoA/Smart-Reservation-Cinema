@@ -1,0 +1,44 @@
+﻿@model IEnumerable<SmartReservationCinema.FilmContext.Actor>
+
+@{
+    ViewData["Title"] = "Index";
+}
+<div class="main-container">
+    <div class="row">
+<h1>Index</h1>
+
+<p>
+    <a asp-action="Create">Create New</a>
+</p>
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Actor_Name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Nationality)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+@foreach (var item in Model) {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Actor_Name)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Nationality)
+            </td>
+            <td>
+                <a asp-action="Edit" asp-route-id="@item.Id_Actor">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.Id_Actor">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.Id_Actor">Delete</a>
+            </td>
+        </tr>
+}
+    </tbody>
+</table>
+</div>
+</div>

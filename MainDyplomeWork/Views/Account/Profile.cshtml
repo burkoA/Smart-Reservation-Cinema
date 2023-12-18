@@ -1,0 +1,55 @@
+﻿@model SmartReservationCinema.Models.ProfileModel
+
+@{
+}
+<div class="user-profile logForm">
+        @Html.Partial("ProfileMenu")
+        <div class="user-details">
+          <form asp-action="Profile">
+          <h1>User Profile</h1>
+          <table>
+            <tr>
+              <th>First Name</th>
+              <td>
+                  <input type="text" asp-for="FirstName" />
+                  <span asp-validation-for="FirstName" class="text-danger"></span>
+              </td>
+            </tr>
+            <tr>
+              <th>Surname</th>
+              <td>
+                  <input type="text" asp-for="LastName" />
+                  <span asp-validation-for="LastName" class="text-danger"></span>
+              </td>
+            </tr>
+            <tr>
+              <th>Address</th>
+              <td>
+                  <input type="text" asp-for="Address" />
+                  <span asp-validation-for="Address" class="text-danger"></span>
+              </td>
+            </tr>
+            <tr>
+              <th>City</th>
+              <td>
+                  <input type="text" asp-for="City" />
+                  <span asp-validation-for="City" class="text-danger"></span>
+              </td>
+            </tr>
+            <tr>
+              <th>Age</th>
+              <td>
+                  <input type="number" asp-for="Age" />
+                  <span asp-validation-for="Age" class="text-danger"></span>
+              </td>
+            </tr>
+            <tr>
+              <th>Registration Date</th>
+              <td>@Model.RegisterDate.ToShortDateString()</td>
+            </tr>
+          </table>
+          <br />
+          <button type="submit">Save changes</button>
+          </form>
+        </div>
+    </div>

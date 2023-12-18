@@ -1,0 +1,61 @@
+﻿@model SmartReservationCinema.Models.CinemaModel
+
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<hr />
+<div class="logForm container">
+        <form asp-action="Edit" enctype="multipart/form-data">
+            <h2>Edit</h2>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="Image" />
+            <div class="form-group">
+                <label asp-for="CinemaName" class="control-label"></label>
+                <input asp-for="CinemaName" class="form-control" />
+                <span asp-validation-for="CinemaName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Localisation" class="control-label"></label>
+                <input asp-for="Localisation" class="form-control" />
+                <span asp-validation-for="Localisation" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LongCoordinate" class="control-label"></label>
+                <input asp-for="LongCoordinate" class="form-control" />
+                <span asp-validation-for="LongCoordinate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="LatCoordinate" class="control-label"></label>
+                <input asp-for="LatCoordinate" class="form-control" />
+                <span asp-validation-for="LatCoordinate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="CinemaRating" class="control-label"></label>
+                <input asp-for="CinemaRating" class="form-control" />
+                <span asp-validation-for="CinemaRating" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Image" class="control-label"></label>
+                <input asp-for="uploadFile" type="file"/>
+                <span asp-validation-for="uploadFile" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="TownId" class="control-label"></label>
+                <select asp-for="TownId" class="form-control" asp-items="ViewBag.Towns"></select>
+                <span asp-validation-for="TownId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Save" class="btn btn-primary" />
+            </div>
+        </form>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

@@ -1,0 +1,39 @@
+﻿@model SmartReservationCinema.Models.EventModel
+@{
+    ViewData["Title"] = "EventWarning";
+}
+<div class="logForm container">
+<form asp-action="EventCreate" method="get">
+            <h1>Warning!!!</h1>
+            <h3>To your calendar will be add new event. Please give access!</h3>
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="CinemaName" class="control-label"></label>
+                <input asp-for="CinemaName" class="form-control" readonly />
+                <span asp-validation-for="CinemaName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="FilmName" class="control-label"></label>
+                <input asp-for="FilmName" class="form-control"  readonly/>
+                <span asp-validation-for="FilmName" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartDate" class="control-label"></label>
+                <input type="date" asp-for="StartDate" class="form-control" readonly />
+                <span asp-validation-for="StartDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="StartTime" class="control-label"></label>
+                <input type="time" asp-for="StartTime" class="form-control" readonly />
+                <span asp-validation-for="StartTime" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="DurationFilm" class="control-label"></label>
+                <input asp-for="DurationFilm" class="form-control" readonly />
+                <span asp-validation-for="DurationFilm" class="text-danger"></span>
+            </div>
+            <div>
+                <button type="submit">Add Event</button>
+            </div>
+</form>
+</div>

@@ -1,0 +1,36 @@
+﻿@model SmartReservationCinema.FilmContext.Actor
+
+@{
+    ViewData["Title"] = "Create";
+}
+
+<hr />
+<div class="logForm main-container">
+    <h1>Create Actor</h1>
+    <div class="col-md-4">
+        <form asp-action="Create">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Actor_Name" class="control-label"></label>
+                <input asp-for="Actor_Name" class="form-control" />
+                <span asp-validation-for="Actor_Name" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Nationality" class="control-label"></label>
+                <input asp-for="Nationality" class="form-control" />
+                <span asp-validation-for="Nationality" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}

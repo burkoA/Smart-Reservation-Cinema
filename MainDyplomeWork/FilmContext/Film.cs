@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.ComponentModel.DataAnnotations.Schema;
 
-namespace MainDyplomeWork.FilmContext
+namespace SmartReservationCinema.FilmContext
 {
     public class Film
     {
@@ -21,9 +21,13 @@ namespace MainDyplomeWork.FilmContext
         [Required]
         [DataType(DataType.Date)]
         public DateTime Realese { get; set; }
+        public double Rating { get; set; }
         public IEnumerable<Genre_Film> Genres { get; set; }=new List<Genre_Film>();
         public int DirectorId { get; set; }
         [ForeignKey("DirectorId")]
         public Director Director { get; set; }
+        public IEnumerable<Film_Actor> Actors { get; set; } = new List<Film_Actor>();
+        public IEnumerable<Subtitle> Subtitles { get; set; } = new List<Subtitle>();
+        public IEnumerable<Comment> Comments { get; set; } = new List<Comment>();
     }
 }

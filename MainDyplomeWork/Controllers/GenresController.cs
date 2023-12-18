@@ -5,13 +5,14 @@ using System.Threading.Tasks;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.Rendering;
 using Microsoft.EntityFrameworkCore;
-using MainDyplomeWork.FilmContext;
+using SmartReservationCinema.FilmContext;
 
-namespace MainDyplomeWork.Controllers
+namespace SmartReservationCinema.Controllers
 {
     public class GenresController : Controller
     {
         private readonly FilmDbContext _context;
+        private string[] wordsToSearch = null;
 
         public GenresController(FilmDbContext context)
         {
@@ -19,9 +20,30 @@ namespace MainDyplomeWork.Controllers
         }
 
         // GET: Genres
-        public async Task<IActionResult> Index()
+        public async Task<IActionResult> Index([FromQuery] String search = "")
         {
-            return View(await _context.Genres.ToListAsync());
+            var items = await _context.Genres.ToListAsync();
+            if (search != "")
+            {
+                wordsToSearch = SplitSearch(search);
+                items = items.Where(searchCondition).ToList();
+            }
+            return View(items);
+        }
+
+        public bool searchCondition(Genre genre)
+        {
+            foreach (string word in wordsToSearch)
+            {
+                if (genre.GenreName.ToLower().Contains(word))
+                    return true;
+            }
+            return false;
+        }
+
+        public String[] SplitSearch(String search)
+        {
+            return search.ToLower().Split(new char[] { ' ', ',', '.', '-', ':', ';', '\'', '"', '!', '?' }, StringSplitOptions.TrimEntries | StringSplitOptions.RemoveEmptyEntries);
         }
 
         // GET: Genres/Details/5
@@ -49,8 +71,6 @@ namespace MainDyplomeWork.Controllers
         }
 
         // POST: Genres/Create
-        // To protect from overposting attacks, enable the specific properties you want to bind to.
-        // For more details, see http://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
         public async Task<IActionResult> Create([Bind("Id,GenreName")] Genre genre)

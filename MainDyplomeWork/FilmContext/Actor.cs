@@ -1,6 +1,7 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 
-namespace MainDyplomeWork.FilmContext
+namespace SmartReservationCinema.FilmContext
 {
     public class Actor
     {
@@ -10,5 +11,6 @@ namespace MainDyplomeWork.FilmContext
         public string Actor_Name { get; set; } = "";
         [Required]
         public string Nationality { get; set; } = "";
+        public List<Film_Actor> Films { get; set; }
     }
 }

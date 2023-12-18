@@ -15,7 +15,7 @@
         "ASPNETCORE_ENVIRONMENT": "Development"
       }
     },
-    "MainDyplomeWork": {
+    "SmartReservationCinema": {
       "commandName": "Project",
       "dotnetRunMessages": "true",
       "launchBrowser": true,

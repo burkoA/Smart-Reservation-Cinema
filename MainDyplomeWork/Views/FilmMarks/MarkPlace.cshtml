@@ -1,0 +1,28 @@
+﻿@model SmartReservationCinema.FilmContext.FilmMark
+@{
+        Layout = null;
+}
+<html>
+    <head>
+        <link rel="stylesheet" href="~/css/style.css" />
+    </head>
+    <body>
+        <div asp-validation-summary="All" class="text-danger"></div>
+<form class="rate" asp-controller="FilmMarks" asp-action="Create">
+        <input type="hidden" asp-for="FilmId"/>
+        <input type="radio" id="star5" asp-for="Mark" value="5" />
+        <label for="star5" title="text">5 stars</label>
+        <input type="radio" id="star4" asp-for="Mark" value="4" />
+        <label for="star4" title="text">4 stars</label>
+        <input type="radio" id="star3" asp-for="Mark" value="3" />
+        <label for="star3" title="text">3 stars</label>
+        <input type="radio" id="star2" asp-for="Mark" value="2" />
+        <label for="star2" title="text">2 stars</label>
+        <input type="radio" id="star1" asp-for="Mark" value="1" />
+        <label for="star1" title="text">1 star</label>
+    <button style="height:40px; width: 100px; font-size:20px;" type="submit">Submit</button>
+</form>
+    </body>
+</html>
+
+

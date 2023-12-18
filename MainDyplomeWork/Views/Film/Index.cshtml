@@ -1,4 +1,4 @@
-﻿@model IEnumerable<MainDyplomeWork.FilmContext.Film>
+﻿@model IEnumerable<SmartReservationCinema.Models.FilmWithRating>
 
 @{
 }
@@ -9,7 +9,7 @@
                 <h2>Genres</h2>
                 <ul>
                   <li><a asp-controller="Film" asp-action="Index" asp-route-id="">All Genres</a></li>
-                  @foreach(MainDyplomeWork.FilmContext.Genre genre in ViewBag.GenresList)
+                  @foreach(SmartReservationCinema.FilmContext.Genre genre in ViewBag.GenresList)
                   {
                     <li><a asp-controller="Film" asp-action="Index" asp-route-id="@genre.Id">@genre.GenreName</a></li>
                   }
@@ -19,29 +19,34 @@
       
             <div class="col-md-8 col-lg-10 col-sm-10">
               <div class="col-md-12 cinema-list">
-                <h2>Cinema List</h2>
-                <div class="newFilm">
-                    <a asp-controller="Film" asp-action="Create">Create new film</a>
-                </div>
-              </div>
-              @foreach(MainDyplomeWork.FilmContext.Film item in Model )
+                <h2>Movie List</h2>
+                @if (Context.User.IsInRole("admin") || Context.User.IsInRole("manager"))
+                {
+                    <div class="newFilm">
+                        <a asp-controller="Film" asp-action="Create">Create new film</a>
+                    </div>
+                }
+            </div>
+              @foreach(SmartReservationCinema.Models.FilmWithRating item in Model )
               {
                   
               
               <div class="movie-info row">
                 <div class="col-md-4 col-sm-8">
-                  <img src="/img/filmsImage/film1.jpg" alt="Movie Poster" class="img-fluid">
+                    <a asp-action="Details" asp-route-id="@item.Film.Id">
+                  <img src="/img/filmsImage/@item.Film.Image" alt="Movie Poster" class="img-fluid">
+                  </a>
                 </div>
       
                 <div class="col-md-8 col-sm-4">
                   <div class="movie-title">
-                    <h1 class="movie-name">@item.FilmName</h1>
+                    <a asp-action="Details" asp-route-id="@item.Film.Id"><h1 class="movie-name">@item.Film.FilmName</h1></a>
                   </div>
       
                   <div class="genre-info">
                     <h2>Genre:</h2>
                     <p>
-                        @foreach( MainDyplomeWork.FilmContext.Genre_Film item2 in item.Genres)
+                        @foreach( SmartReservationCinema.FilmContext.Genre_Film item2 in item.Film.Genres)
                         {
                             <span>@item2.genre.GenreName</span>            
                         }
@@ -50,18 +55,21 @@
 
                   <div class="movie-description">
                     <h2>Description of the movie:</h2>
-                    <p>@item.Description</p>
+                    <p>@item.Film.Description</p>
                   </div>
       
                   <div class="rating">
                     <h2>Rating:</h2>
                     <p>1/5</p>
                   </div>
-                  <div class="actionButton">
-                      <a asp-controller="Film" asp-action="Edit" asp-route-id="@item.Id">Edit</a>
-                      <a asp-controller="Film" asp-action="Delete" asp-route-id="@item.Id">Delete</a>
-                  </div>
-                </div>
+                        @if (Context.User.IsInRole("admin") || Context.User.IsInRole("manager"))
+                        {
+                            <div class="actionButton">
+                                <a asp-controller="Film" asp-action="Edit" asp-route-id="@item.Film.Id">Edit</a>
+                                <a asp-controller="Film" asp-action="Delete" asp-route-id="@item.Film.Id">Delete</a>
+                            </div>
+                        }
+                    </div>
               </div>   
               
               }
@@ -75,7 +83,7 @@
                             @for (int i = 0; i < ViewBag.pageCnt; i++)
                             {
                                 <li class="page-item">
-                                    <a class="page-link" href="/Film/Index/@ViewBag.curGenge?curPage=@i">@(i+1)</a>
+                                    <a class="page-link" href="/Film/Index/@ViewBag.curGenge?curPage=@i@(string.IsNullOrEmpty(ViewBag.search)?"":"&seach="+ViewBag.search)">@(i+1)</a>
                                 </li>
                             }
                         </ul>

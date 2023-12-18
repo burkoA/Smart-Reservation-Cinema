@@ -15,7 +15,7 @@
 @*    <header>
         <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-white border-bottom box-shadow mb-3">
             <div class="container">
-                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">MainDyplomeWork</a>
+                <a class="navbar-brand" asp-area="" asp-controller="Home" asp-action="Index">SmartReservationCinema</a>
                 <button class="navbar-toggler" type="button" data-toggle="collapse" data-target=".navbar-collapse" aria-controls="navbarSupportedContent"
                         aria-expanded="false" aria-label="Toggle navigation">
                     <span class="navbar-toggler-icon"></span>
@@ -42,11 +42,16 @@
       <nav>
         <ul>
           <li><a asp-controller="Film" asp-action="Index" class="active">Movies</a></li>
-          <li><a href="#">Theaters</a></li>
-          <li><a href="#">Contact</a></li>
+          <li><a asp-controller="Cinema" asp-action="Index">Cinema</a></li>
         @if (Context.User.Identity.IsAuthenticated)
         {
-            <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">User profile</a>
+                        <ul class="dropdown-menu-profile">
+                            <li><a asp-controller="Account" asp-action="Profile">Profile</a></li>
+                            <li><a asp-controller="Account" asp-action="Logout">Logout</a></li>
+                        </ul>
+                    </li>
         }
         else{
         <li><a asp-controller="Account" asp-action="Login">Login</a></li>
@@ -54,20 +59,32 @@
         </ul>
       </nav>
     </div>
-    <div class="admin-panel-block">
-        <ul>
-            <li class="dropdown">
-            <a href="#" class="dropdown-toggle">Admin Panel</a>
-            <ul class="dropdown-menu">
-              <li><a asp-controller="Genres" asp-action="Index">Genres</a></li>
-              <li><a asp-controller="Directors" asp-action="Index">Directors</a></li>
-            </ul>
-          </li>
-        </ul>
-    </div>
+    @if (Context.User.IsInRole("admin") || Context.User.IsInRole("manager"))
+        {
+            <div class="admin-panel-block">
+                <ul>
+                    <li class="dropdown">
+                        <a href="#" class="dropdown-toggle">Admin Panel</a>
+                        <ul class="dropdown-menu">
+                            <li><a asp-controller="Genres" asp-action="Index">Genres</a></li>
+                            <li><a asp-controller="Town" asp-action="Index">Towns</a></li>
+                            <li><a asp-controller="Directors" asp-action="Index">Directors</a></li>
+                            <li><a asp-controller="Actor" asp-action="Index">Actor</a></li>
+                            <li><a asp-controller="Hall" asp-action="Index">Hall</a></li>
+                            <li><a asp-controller="Language" asp-action="Index">Language</a></li>
+                            <li><a asp-controller="Subtitle" asp-action="Index">Subtitle</a></li>
+                            @if (Context.User.IsInRole("admin"))
+                                {
+                                  <li><a asp-controller="Account" asp-action="AccountList">Users</a></li>  
+                                }
+                        </ul>
+                    </li>
+                </ul>
+            </div>
+        }
     <div class="header-right">
-      <form class="search-form">
-        <input type="text" placeholder="Search...">
+      <form class="search-form" method="get">
+        <input type="text" name="search" placeholder="Search...">
         <button type="submit">Search</button>
       </form>
     </div>
@@ -79,7 +96,7 @@
 
     <footer class="border-top footer text-muted">
         <div class="container">
-            &copy; 2023 - MainDyplomeWork - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+            &copy; 2023 - SmartReservationCinema - <a asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
         </div>
     </footer>
     <script>
@@ -106,6 +123,22 @@ $document.addEventListener('DOMContentLoaded', function() {
   });
 });
     </script>
+@*<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        var dropdown = document.querySelector(".dropdown");
+        var menu = dropdown.querySelector(".dropdown-menu-profile");
+
+        dropdown.addEventListener("mouseenter", function () {
+            menu.style.opacity = "1";
+            menu.style.pointerEvents = "none";
+        });
+
+        dropdown.addEventListener("mouseleave", function () {
+            menu.style.opacity = "0";
+            menu.style.pointerEvents = "none";
+        });
+    });
+</script>*@
     @await RenderSectionAsync("Scripts", required: false)
 </body>
 </html>

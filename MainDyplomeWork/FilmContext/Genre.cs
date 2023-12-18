@@ -1,7 +1,7 @@
 ﻿using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 
-namespace MainDyplomeWork.FilmContext
+namespace SmartReservationCinema.FilmContext
 {
     public class Genre
     {
